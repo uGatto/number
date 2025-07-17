@@ -1,0 +1,47 @@
+using System;
+
+namespace GoodNumber
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            int playerAttempts = 0;
+            int playerNumber = 0;
+
+            Random random = new Random();
+            int gameNumber = random.Next(1, 10);
+
+            Console.WriteLine("Программа загадывает число от 1 до 10. Вам следует угадать это число.");
+            Console.WriteLine("И так, ваше число будет:");
+
+            while (playerNumber != gameNumber)
+            {
+                playerAttempts++;
+
+                string inputText = Console.ReadLine();
+                if (!int.TryParse(inputText, out playerNumber) || (playerNumber < 1 || playerNumber > 10))
+                {
+                    Console.WriteLine("Пожалуйстав введите целое число заданного диапазона.");
+                    continue;
+                }
+
+                if (playerNumber > gameNumber)
+                {
+                    Console.WriteLine("Ваше число больше загаданного.");
+                }
+                else if (playerNumber < gameNumber)
+                {
+                    Console.WriteLine("Ваше число меньше загаданного.");
+                }
+                else
+                {
+                    Console.WriteLine($"Вы угадали. Поздравляю. Попыток было: {playerAttempts}");
+                }
+            }
+
+            Console.WriteLine("Нажмите любую клавишу чтобы завершить программу.");
+            Console.ReadKey();
+        }
+    }
+}
